@@ -1,7 +1,7 @@
 import numpy as np
 
 # TODO [1]: implement the guessing_game function
-def guessing_game(max_value:int, *,attempts:int): # hint: return type is tuple[bool, list[int], int]:
+def guessing_game(max_value:int, *,attempts:int)-> tuple[bool, list[int], int]: # hint: return type is tuple[bool, list[int], int]:
     chosen_int:int = np.random.randint(low=1,high=max_value+1)
     guesses: list[int] = []
 
@@ -14,6 +14,12 @@ def guessing_game(max_value:int, *,attempts:int): # hint: return type is tuple[b
         except ValueError:
             print('Invalid input, please enter a valid number')
             continue
+
+        if 1>guess or guess>max_value :
+            print('Invalid input, please enter a valid number')
+            continue
+
+
 
         guesses.append(guess)
         attempts -= 1
@@ -38,7 +44,7 @@ def play_game()-> None:
     attempts:int = 5
     won, guesses, chosen_int = guessing_game(max_value, attempts=attempts)
     while not won:
-        assert chosen_int not in guesses
+        assert chosen_int not in guesses ,"there is a problem"
         replay:str = input('Do you want to play again? (yes/no): ')
         if replay.lower() == 'yes':
             won, guesses, chosen_int = guessing_game(max_value, attempts=attempts)
@@ -46,10 +52,7 @@ def play_game()-> None:
             return
         else:
             print('Invalid input, please enter yes or no')
-    try:
-        assert chosen_int in guesses
-    except AssertionError:
-        print('The chosen number is not in the list of guesses')
+    assert chosen_int in guesses, 'The chosen number is not in the list of guesses'
         
 
             
