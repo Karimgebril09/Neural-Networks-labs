@@ -1,0 +1,1 @@
+takes a week classifier (i.e., a model that severely underfits) and transforms it into a strong classifier
